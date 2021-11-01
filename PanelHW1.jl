@@ -8,8 +8,6 @@
 using CSV, DataFrames
 using Dates
 using RCall
-using FixedEffectModels
-using RegressionTables
 
 ##
 # Functions
@@ -68,10 +66,10 @@ ff.Quarter = [Quarter.(i).value for i in ff.DATE]
 ff.Year = [Year.(i).value for i in ff.DATE]
 
 #=
-FRED observations of Fed funds are weekly, but for each quarter I only want
+FRED has weekly data for Fed Funds, but for each quarter I only want
 to keep the last observation. I do so by assigning a quarter and year to each
 observation, and using an indicator to select the last date of each quarter.
-I can directly match the remaining values to the main database.
+I can then directly match the remaining values.
 =#
 ff.dummy = 0
 ff.dummy = [[ff.Quarter[i] != ff.Quarter[i+1] for i ∈ 1:(size(ff)[1]-1)]; 0]
@@ -86,6 +84,7 @@ df.timedep = df.timedep + df.timedepuninsured
 select!(df, Not(:timedepuninsured))
 rename!(df, ([:Name, :Date, :HHI, :Deposits, :InterestExpense, :SavingsDeposits, :TimeDeposits, :Liabilities, :Assets, :Cash, :Securities, :Loans, :RELoans, :CILoans, :FF]))
 df = removemissings(df)
+
 df.Date = parsedate(df.Date)
 df.quarter = Dates.quarter.(df.Date)
 
@@ -93,7 +92,7 @@ df.quarter = Dates.quarter.(df.Date)
 top10 = quantile(df.Assets, 0.90)
 top25 = quantile(df.Assets, 0.75)
 
-filter!(row -> row.Assets > top25, df)
+#filter!(row -> row.Assets > top25, df)
 
 ## EXERCISE D - REGRESSIONS
 
