@@ -1,8 +1,8 @@
 # Install
-using Pkg
+using Pkg
 
 ##--------------------------
-# Mathematics
+# Mathematics
 function mathematics()
     Pkg.add("ForwardDiff")
     Pkg.add("ApproxFun")
@@ -18,7 +18,7 @@ function mathematics()
 end
 
 ##--------------------------
-# Probability and Statistics
+# Probability and Statistics
 function statistics()
     Pkg.add("MultivariateStats")
     Pkg.add("TimeSeries")
@@ -34,7 +34,7 @@ function statistics()
 end
 
 ##--------------------------
-# Regression
+# Regression
 function regressions()
     Pkg.add("GLM")
     Pkg.add("Lasso")
@@ -46,7 +46,7 @@ function regressions()
 end
 
 ##--------------------------
-# Supercomputing
+# Supercomputing
 function supercomputing()
     Pkg.add("SimJulia")
     Pkg.add("CPUTime")
@@ -59,7 +59,7 @@ function supercomputing()
 end
 
 ##--------------------------
-# Numerical Analysis
+# Numerical Analysis
 function numerical()
     Pkg.add("Interpolations")
     Pkg.add("FastTransforms")
@@ -68,7 +68,7 @@ function numerical()
 end
 
 ##--------------------------
-# Econometrics
+# Econometrics
 function econometrics()
     Pkg.add("QuantEcon")
     Pkg.add("Expectations")
@@ -87,7 +87,7 @@ function data()
 end
 
 ##--------------------------
-# Plots
+# Plots
 function plots()
     Pkg.add("Plots")
     Pkg.add("PlotThemes")
@@ -95,18 +95,20 @@ function plots()
     Pkg.add("Compose")
     Pkg.add("StatsPlots")
     Pkg.add("Colors")
-    Pkg.add("Interact")
+    Pkg.add("VegaLite")
 end
 
 ##--------------------------
-# General
+# General
 function general()
     Pkg.add("RCall")
     Pkg.add("RDatasets")
     Pkg.add("Weave")
     Pkg.add("Dates")
     Pkg.add("Measures")
-    Pkg.add("LaTeXStrings")
+    Pkg.add("ProgressBars")
+    Pkg.add("DataConvenience")
+    Pkg.add("Interact")
 end
 
 ##--------------------------
@@ -116,6 +118,7 @@ function scraping()
     Pkg.add("Gumbo")
     Pkg.add("Cascadia")
     Pkg.add("JSON")
+    Pkg.add("Downloads")
 end
 
 ##--------------------------
@@ -127,6 +130,16 @@ function files()
     Pkg.add("ExcelReaders")
     Pkg.add("ExcelFiles")
     Pkg.add("DelimitedFiles")
+    Pkg.add("Tables")
+    Pkg.add("ReadStat")
+    Pkg.add("StatFiles")
+end
+
+##--------------------------
+# Read files
+function LaTeX()
+    Pkg.add("LaTeXStrings")
+    Pkg.add("RegressionTables")
 end
 
 ##--------------------------
@@ -135,7 +148,6 @@ function precompiles()
     Pkg.build("FFTW")
     Pkg.build("Rmath")
     Pkg.build("RCall")
-    Pkg.build("GR")
 end
 
 ##--------------------------
@@ -151,6 +163,7 @@ function addall()
     plots()
     general()
     files()
+    LaTeX()
     precompiles()
 end
 
@@ -164,7 +177,8 @@ using SimJulia, CPUTime, Optim, BlackBoxOptim, BenchmarkTools, TimerOutputs, Ite
 using Interpolations, FastTransforms, RandomMatrices, RandomNumbers
 using QuantEcon, Expectations, GARCH, Econometrics, Currencies, InterestRates, ARCHModels
 using FredData, MarketData
-using Plots, PlotThemes, Gadfly, Compose, StatsPlots, Colors, Interact
-using RCall, RDatasets, Weave, Dates, Measures, LaTeXStrings
-using HTTP, Gumbo, Cascadia, JSON
-using CSV, XLSX, DataFrames, ExcelReaders, ExcelFiles, DelimitedFiles
+using Plots, PlotThemes, Gadfly, Compose, StatsPlots, Colors, VegaLite
+using RCall, RDatasets, Weave, Dates, Measures, ProgressBars, DataConvenience, Interact
+using HTTP, Gumbo, Cascadia, JSON, Downloads
+using CSV, XLSX, DataFrames, ExcelReaders, ExcelFiles, DelimitedFiles, Tables, ReadStat, StatFiles
+using LaTeXStrings, RegressionTables
